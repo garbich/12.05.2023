@@ -1,0 +1,38 @@
+#include <iostream>
+
+using namespace std;
+//Task 2
+
+void insertElements(int* array, int& arraySize, const int* elements, int elementsSize, int startIndex) {
+    if (startIndex < 0 || startIndex > arraySize) {
+        cout << "error" << endl;
+        return;
+    }
+
+    for (int i = arraySize - 1; i >= startIndex; i--) {
+        array[i + elementsSize] = array[i];
+    }
+
+    for (int i = 0; i < elementsSize; i++) {
+        array[startIndex + i] = elements[i];
+    }
+
+    arraySize += elementsSize;
+}
+
+int main() {
+    int arraySize = 6;
+    const int elementsSize = 3;
+
+    int* arr = new int[arraySize] {1, 2, 3, 7, 8, 9};
+    int newElements[elementsSize]{ 5, 5, 6 };
+    int startIndex = 3;
+
+    insertElements(arr, arraySize, newElements, elementsSize, startIndex);
+
+    for (int i = 0; i < arraySize; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+     
+}
